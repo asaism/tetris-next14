@@ -24,7 +24,7 @@ To get a local copy up and running, follow these simple steps:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/nextjs14-tetris.git
+   git clone https://github.com/asaism/nextjs14-tetris.git
    ```
 
 2. Navigate to the project directory:
@@ -92,9 +92,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [@yourtwitter](https://twitter.com/yourtwitter) - email@example.com
+Suguru as AI - [@yourtwitter](https://twitter.com/suguru_as_ai) - suguru@asaism.com
 
-Project Link: [https://github.com/yourusername/nextjs14-tetris](https://github.com/yourusername/nextjs14-tetris)
+Project Link: [https://github.com/asaism/nextjs14-tetris](https://github.com/asaism/nextjs14-tetris)
 
 ## Acknowledgements
 
