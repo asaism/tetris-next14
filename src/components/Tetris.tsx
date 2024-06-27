@@ -56,7 +56,7 @@ const Tetris: React.FC = () => {
     }
   }, [checkCollision]);
 
-  const mergePiece = () => {
+  const mergePiece = useCallback(() => {
     if (!currentPiece) return;
 
     const newBoard = board.map(row => [...row]);
@@ -70,7 +70,7 @@ const Tetris: React.FC = () => {
     setBoard(newBoard);
     setScore(prevScore => prevScore + 10);
     newPiece();
-  };
+  }, [board, currentPiece, currentPosition.x, currentPosition.y, newPiece]);
 
   const moveDown = useCallback(() => {
     if (!currentPiece) return;
@@ -80,7 +80,7 @@ const Tetris: React.FC = () => {
     } else {
       mergePiece();
     }
-  }, [currentPiece, currentPosition, board]);
+  }, [currentPiece, currentPosition, checkCollision, mergePiece]);
 
   const moveLeft = useCallback(() => {
     if (!currentPiece) return;
@@ -88,7 +88,7 @@ const Tetris: React.FC = () => {
     if (!checkCollision(currentPiece.shape, { x: currentPosition.x - 1, y: currentPosition.y })) {
       setCurrentPosition(prev => ({ ...prev, x: prev.x - 1 }));
     }
-  }, [currentPiece, currentPosition, board]);
+  }, [currentPiece, currentPosition, checkCollision]);
 
   const moveRight = useCallback(() => {
     if (!currentPiece) return;
@@ -96,7 +96,7 @@ const Tetris: React.FC = () => {
     if (!checkCollision(currentPiece.shape, { x: currentPosition.x + 1, y: currentPosition.y })) {
       setCurrentPosition(prev => ({ ...prev, x: prev.x + 1 }));
     }
-  }, [currentPiece, currentPosition, board]);
+  }, [currentPiece, currentPosition, checkCollision]);
 
   const rotate = useCallback(() => {
     if (!currentPiece) return;
@@ -107,7 +107,7 @@ const Tetris: React.FC = () => {
     if (!checkCollision(rotated, currentPosition)) {
       setCurrentPiece(prev => prev ? { ...prev, shape: rotated } : null);
     }
-  }, [currentPiece, currentPosition, board]);
+  }, [currentPiece, currentPosition, checkCollision]);
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -134,7 +134,7 @@ const Tetris: React.FC = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
     };
-  }, [moveDown, moveLeft, moveRight, rotate]);
+  }, [moveDown, moveLeft, moveRight, rotate, gameOver]);
 
   useEffect(() => {
     if (!currentPiece) {
